@@ -36,7 +36,7 @@ public class Content {
             if (StringUtils.isNotBlank(keyWord)) {
                 doc.append("dataType", "5");
                 if (StringUtils.isNotBlank(type)) {
-                    doc.append("type", type);// 类型
+                    doc.append("urlResult", type);// 类型
                 }
                 doc.append("word", keyWord);// 匹配的敏感词
                 doc.append("htmlTitle", map.get("title"));
@@ -49,11 +49,11 @@ public class Content {
 
             }else {
                 doc.append("dataType", "6"); //6代表没有关键词匹配中
-                doc.append("type", "正常");
+                doc.append("urlResult", "正常");
             }
         }else{
             doc.append("dataType", "4");//4代表获取到页面的内容是空的
-            doc.put("type","无法打开");
+            doc.put("urlResult","无法打开");
         }
     }
 

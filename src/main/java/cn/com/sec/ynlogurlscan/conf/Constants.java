@@ -7,11 +7,11 @@ public class Constants {
     //数据库名称
     public static final String MONGO_DB_NAME="yn-yd-fqz";
     //查询数据表名
-    public static final String SRC_TABLE_NAME="";
+    public static final String SRC_TABLE_NAME="dongRuan";
     //结果数据数表名
-    public static final String DEST_TABLE_NAME="";
+    public static final String DEST_TABLE_NAME=SRC_TABLE_NAME;
     //备份数据库表名
-    public static final String BAK_TABLE_NAME="";
+    public static final String BAK_TABLE_NAME="dongRuanOwner";
     //常用数据表名
     public static final String WHITE_SENSITIVE_TABLE_NAME="white_sensitive";
     //白名单数据表名

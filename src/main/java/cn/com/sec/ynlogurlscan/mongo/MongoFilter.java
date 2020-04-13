@@ -17,7 +17,7 @@ public class MongoFilter {
         Document first = db.getCollection(Constants.WHITE_SENSITIVE_TABLE_NAME).find(filter).first();
         if (null != first && !first.isEmpty()){
             document.put("dataType","1");
-            document.put("type","白名单");
+            document.put("urlResult","白名单");
         }
     }
 
@@ -29,7 +29,7 @@ public class MongoFilter {
         Document first = db.getCollection(Constants.WHITE_LIST_TABLE_NAME).find(document).first();
         if (null != first && !first.isEmpty()){
             document.put("dataType","2");
-            document.put("type","白名单");
+            document.put("urlResult","白名单");
         }
     }
 
@@ -41,7 +41,7 @@ public class MongoFilter {
         Document first = db.getCollection(Constants.BLACK_LIST_TABLE_NAME).find(document).first();
         if (null != first && !first.isEmpty()){
             document.put("dataType","3");
-            document.put("type","黑名单");
+            document.put("urlResult","黑名单");
             document.put("word",first.getString("word"));
         }
     }

@@ -21,8 +21,6 @@ public class UrlScan {
 
     //设置日志类别
     private static Logger log = LoggerFactory.getLogger(UrlScan.class);
-    //设置时间
-    private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -42,7 +40,7 @@ public class UrlScan {
                 dongruans.forEach(consumer);
             }else{
                 //没有日志
-                log.info("---------"+dtf.format(LocalDateTime.now())+"---There are no sites to analyze---------");
+                log.info("----There are no sites to analyze---------");
             }
             //关闭客户端
             close(client);

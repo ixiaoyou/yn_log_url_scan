@@ -20,6 +20,7 @@ public class TestDateTimeFormatter {
 
         String strDate = ldt.format(dtf);
         System.out.println(strDate);
+        log.info(ldt.toString());
 
         DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH:mm:ss");
         String strDate2 = dtf2.format(ldt);

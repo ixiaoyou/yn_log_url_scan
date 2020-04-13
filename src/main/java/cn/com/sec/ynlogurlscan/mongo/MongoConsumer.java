@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.function.Consumer;
 
 /**
@@ -25,8 +24,6 @@ public class MongoConsumer implements Consumer<Document> {
     private MongoDatabase db;
     //分词工具
     private DFAUtils dfaUtils;
-    //设置时间
-    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 
     public MongoConsumer( MongoDatabase db){
@@ -61,9 +58,9 @@ public class MongoConsumer implements Consumer<Document> {
     @Override
     public void accept(Document document) {
         //获取原始
-        String oracHost = document.getString("oracHost");
-        String fileName = document.getString("fileName");
-        log.info("-- Start Analysis Host:{} -- FileName:{} --",oracHost,fileName);
+        String orclHost = document.getString("orclHost");
+        String fileName = document.getString("filename");
+        log.info("-- Start Analysis Host:{} -- FileName:{} --",orclHost,fileName);
         //获取一级域名
         String host = document.getString("host");
         //根据一级域名过滤
@@ -87,12 +84,16 @@ public class MongoConsumer implements Consumer<Document> {
         if("0".equals(document.getString("dataType"))){
             Content.analysis(dfaUtils,document);
         }
+        Document update = new Document();
+        update.put("orclHost",orclHost);
+        update.put("filename",fileName);
+        document.put("state","1");
+        document.put("scanDate",LocalDateTime.now());
         //保存结果
-        MongoInsert.save(db,document);
+        MongoInsert.save(db,update,document);
         //保存备份结果
         MongoInsert.bakup(db,document);
-
-        log.info("-- Start Analysis Host:{} -- FileName:{} --",oracHost,fileName);
+        log.info("-- end Analysis Host:{} -- FileName:{} --",orclHost,fileName);
     }
 
 
