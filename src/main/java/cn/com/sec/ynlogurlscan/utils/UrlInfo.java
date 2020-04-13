@@ -359,7 +359,7 @@ public class UrlInfo {
         }
 
         //默认编码
-        String charset = "GBK";//GBK UTF-8
+        String charset = "UTF-8";//GBK UTF-8
         String string = "";
         //byte[] byteHtml = UrlInfo.sendGet(htmlUrl);
         byte[] byteHtml = null;
